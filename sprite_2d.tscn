@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd8rg1xebg56x"]
-
-[ext_resource type="Texture2D" uid="uid://pruap11xe2ds" path="res://art/playerGrey_up1.png" id="1_f7cmv"]
-
-[node name="Sprite2D" type="Sprite2D"]
-position = Vector2(515, 301)
-texture = ExtResource("1_f7cmv")
