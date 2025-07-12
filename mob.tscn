@@ -45,27 +45,27 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eqsov"]
-radius = 59.0
-height = 120.0
+radius = 34.0
+height = 68.0
 
-[node name="Mob" type="RigidBody2D"]
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_1qmh0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(231, 206)
+position = Vector2(4, 9)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_yscv0")
 animation = &"fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(210, 207)
+position = Vector2(11, 8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_eqsov")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(241, 205)
+position = Vector2(17, 9)
 scale = Vector2(1.35, 1.075)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

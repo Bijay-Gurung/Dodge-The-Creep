@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class Main : Node
 {
@@ -13,6 +14,9 @@ public partial class Main : Node
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<Player>("Player").Hide();
+		GetNode<Hud>("HUD").ShowGameOver();
+		GetNode<AudioStreamPlayer2D>("Music").Stop();
+		GetNode<AudioStreamPlayer2D>("DeathSound").Play();
 	}
 
 	public void NewGame()
@@ -24,11 +28,22 @@ public partial class Main : Node
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
+
+		var hud = GetNode<Hud>("HUD");
+		hud.UpdateScore(_score);
+		hud.ShowMessage("Get Ready!");
+
+		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
+		
+		GetNode<AudioStreamPlayer2D>("Music").Play();
+
 	}
 
 	private void OnScoreTimerTimeout()
 	{
 		_score++;
+		var hud = GetNode<Hud>("HUD");
+		hud.UpdateScore(_score);
 	}
 
 	private void OnStartTimerTimeout()
@@ -60,7 +75,6 @@ public partial class Main : Node
 
 	public override void _Ready()
 	{
-		NewGame();
 	}
 
 }
